@@ -27,6 +27,15 @@ public class StorageController {
 
     public static String loadFromFile(String path){
         try {
+            File f = new File(path);
+
+            if(!f.exists())
+                f.mkdir();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
             int data;
             File f = new File(path + File.separator + fileName);
             FileInputStream fis = new FileInputStream(f);

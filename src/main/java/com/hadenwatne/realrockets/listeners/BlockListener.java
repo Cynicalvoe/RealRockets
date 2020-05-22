@@ -51,7 +51,9 @@ public class BlockListener implements Listener {
             IBlockUI b = plugin.getMapper().getBlockMap().get(e.getClickedBlock().getLocation());
 
             if(b != null){
+                e.setCancelled(true);
                 e.getPlayer().openInventory(b.getGUI());
+                System.out.println("Player clicked a GUI");
             }
         }
     }

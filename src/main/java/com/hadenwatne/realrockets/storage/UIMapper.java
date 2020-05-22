@@ -37,9 +37,8 @@ public class UIMapper {
             }
 
             if(b != null) {
-                for (Map<String, Object> item : bd.getInventoryData().keySet()) {
-                    int slot = bd.getInventoryData().get(item);
-                    ItemStack i = ItemStack.deserialize(item);
+                for (int slot : bd.getInventoryData().keySet()) {
+                    ItemStack i = ItemStack.deserialize(bd.getInventoryData().get(slot));
 
                     b.getGUI().setItem(slot, i);
                 }
@@ -78,7 +77,7 @@ public class UIMapper {
                 ItemStack item = b.getGUI().getItem(i);
 
                 if(item != null)
-                    bd.getInventoryData().put(item.serialize(), i);
+                    bd.getInventoryData().put(i, item.serialize());
             }
 
             data.getBlockData().add(bd);
