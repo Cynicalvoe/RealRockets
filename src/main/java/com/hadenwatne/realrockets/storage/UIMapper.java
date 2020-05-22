@@ -33,7 +33,7 @@ public class UIMapper {
             // TODO add each UI type here as needed.
             switch(bd.getType()){
                 case "OreRefinery":
-                    b = new OreRefinery();
+                    b = new OreRefinery(plugin);
                     break;
             }
 

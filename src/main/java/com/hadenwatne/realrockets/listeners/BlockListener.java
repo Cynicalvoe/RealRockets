@@ -3,6 +3,7 @@ package com.hadenwatne.realrockets.listeners;
 import com.hadenwatne.realrockets.RealRockets;
 import com.hadenwatne.realrockets.ui.IBlockUI;
 import com.hadenwatne.realrockets.ui.OreRefinery;
+import com.hadenwatne.realrockets.ui.RocketBlocks;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -24,8 +25,8 @@ public class BlockListener implements Listener {
     public void onBlockPlace(BlockPlaceEvent e){
         if(!e.isCancelled()) {
             // TODO add other types
-            if (e.getItemInHand().isSimilar(plugin.getBlocks().getOreRefinery())) {
-                IBlockUI b = new OreRefinery();
+            if (e.getItemInHand().isSimilar(RocketBlocks.getOreRefinery())) {
+                IBlockUI b = new OreRefinery(plugin);
 
                 plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
                 Bukkit.getPluginManager().registerEvents(b, plugin);
@@ -40,7 +41,7 @@ public class BlockListener implements Listener {
 
             if(b != null){
                 for(ItemStack i : b.getGUI().getContents()){
-                    if(i != null)
+                    if(i != null && !i.isSimilar(RocketBlocks.getUIBlock()))
                         e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), i);
                 }
 
@@ -58,7 +59,6 @@ public class BlockListener implements Listener {
             if(b != null){
                 e.setCancelled(true);
                 e.getPlayer().openInventory(b.getGUI());
-                System.out.println("Player clicked a GUI");
             }
         }
     }

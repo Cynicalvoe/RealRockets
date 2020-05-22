@@ -1,5 +1,7 @@
 package com.hadenwatne.realrockets.storage;
 
+import org.bukkit.Bukkit;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -49,7 +51,7 @@ public class StorageController {
 
             return json.toString();
         } catch (Exception e){
-            e.printStackTrace();
+            Bukkit.getLogger().warning("Could not load RealRockets data file.");
         }
 
         return null;
