@@ -47,3 +47,12 @@ ItemStack (Rocket):
 - Connected Launch Station
 - If equipped with targeting computer (flag checked by Launch Station, launch sequence will determine target)
 - Warhead type
+
+
+===============
+
+The BlockUI shouldn't be persisted/serialized, it should be created anew each time the plugin loads.
+This means its contents should be managed elsewhere.
+
+The mapper will already know the location and type of the block. At disable, perhaps it looks at the gui and saves the
+contents itself. Then, on enable, it can read its own list and update the gui contents in the new object.
