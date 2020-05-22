@@ -39,6 +39,21 @@ public class RocketBlocks {
         return item;
     }
 
+    public static ItemStack getWarheadForge(){
+        ItemStack item = new ItemStack(Material.ANVIL);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &3&lWarhead Forge &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Combine Ore Chunks to craft"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7a warhead"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
     public static ItemStack getEnrichedOre(){
         ItemStack item = new ItemStack(Material.CHARCOAL);
         List<String> lore = new ArrayList<>();

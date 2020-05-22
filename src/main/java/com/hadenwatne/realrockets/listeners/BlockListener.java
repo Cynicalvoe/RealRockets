@@ -1,10 +1,7 @@
 package com.hadenwatne.realrockets.listeners;
 
 import com.hadenwatne.realrockets.RealRockets;
-import com.hadenwatne.realrockets.ui.BiodieselReactor;
-import com.hadenwatne.realrockets.ui.IBlockUI;
-import com.hadenwatne.realrockets.ui.OreRefinery;
-import com.hadenwatne.realrockets.ui.RocketBlocks;
+import com.hadenwatne.realrockets.ui.*;
 import com.hadenwatne.realrockets.utils.RandomUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -33,8 +30,13 @@ public class BlockListener implements Listener {
 
                 plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
                 Bukkit.getPluginManager().registerEvents(b, plugin);
-            }else if (e.getItemInHand().isSimilar(RocketBlocks.getBiodieselReactor())) {
+            } else if (e.getItemInHand().isSimilar(RocketBlocks.getBiodieselReactor())) {
                 IBlockUI b = new BiodieselReactor(plugin);
+
+                plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
+                Bukkit.getPluginManager().registerEvents(b, plugin);
+            } else if (e.getItemInHand().isSimilar(RocketBlocks.getWarheadForge())) {
+                IBlockUI b = new WarheadForge(plugin);
 
                 plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
                 Bukkit.getPluginManager().registerEvents(b, plugin);

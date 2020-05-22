@@ -5,6 +5,7 @@ import com.hadenwatne.realrockets.storage.UIMapperData;
 import com.hadenwatne.realrockets.ui.BiodieselReactor;
 import com.hadenwatne.realrockets.ui.IBlockUI;
 import com.hadenwatne.realrockets.ui.OreRefinery;
+import com.hadenwatne.realrockets.ui.WarheadForge;
 import com.hadenwatne.realrockets.utils.ItemStackSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -38,6 +39,9 @@ public class UIMapper {
                     break;
                 case "BiodieselReactor":
                     b = new BiodieselReactor(plugin);
+                    break;
+                case "WarheadForge":
+                    b = new WarheadForge(plugin);
                     break;
             }
 
