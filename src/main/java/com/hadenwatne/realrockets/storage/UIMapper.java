@@ -2,6 +2,7 @@ package com.hadenwatne.realrockets.storage;
 
 import com.hadenwatne.realrockets.RealRockets;
 import com.hadenwatne.realrockets.storage.UIMapperData;
+import com.hadenwatne.realrockets.ui.BiodieselReactor;
 import com.hadenwatne.realrockets.ui.IBlockUI;
 import com.hadenwatne.realrockets.ui.OreRefinery;
 import com.hadenwatne.realrockets.utils.ItemStackSerializer;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 /*
 This class maps a block Location to the type of IBlockUI associated. It also manages inventory contents for those GUIs.
-This class should not do anything else - handle block breaking and placing somewhere else (TODO)
+This class should not do anything else - handle block breaking and placing somewhere else.
  */
 public class UIMapper {
     private RealRockets plugin;
@@ -34,6 +35,9 @@ public class UIMapper {
             switch(bd.getType()){
                 case "OreRefinery":
                     b = new OreRefinery(plugin);
+                    break;
+                case "BiodieselReactor":
+                    b = new BiodieselReactor(plugin);
                     break;
             }
 

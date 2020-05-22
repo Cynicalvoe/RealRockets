@@ -1,6 +1,7 @@
 package com.hadenwatne.realrockets.listeners;
 
 import com.hadenwatne.realrockets.RealRockets;
+import com.hadenwatne.realrockets.ui.BiodieselReactor;
 import com.hadenwatne.realrockets.ui.IBlockUI;
 import com.hadenwatne.realrockets.ui.OreRefinery;
 import com.hadenwatne.realrockets.ui.RocketBlocks;
@@ -29,6 +30,11 @@ public class BlockListener implements Listener {
             // TODO add other types
             if (e.getItemInHand().isSimilar(RocketBlocks.getOreRefinery())) {
                 IBlockUI b = new OreRefinery(plugin);
+
+                plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
+                Bukkit.getPluginManager().registerEvents(b, plugin);
+            }else if (e.getItemInHand().isSimilar(RocketBlocks.getBiodieselReactor())) {
+                IBlockUI b = new BiodieselReactor(plugin);
 
                 plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
                 Bukkit.getPluginManager().registerEvents(b, plugin);

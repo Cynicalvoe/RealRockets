@@ -52,6 +52,19 @@ public class RealRockets extends JavaPlugin {
             sr.setIngredient('C', Material.COBBLESTONE);
             sr.setIngredient('F', Material.FURNACE);
             sr.setIngredient('L', Material.LAVA_BUCKET);
+            sr.setGroup("realrockets");
+            Bukkit.addRecipe(sr);
+        }
+
+        //BiodieselReactor
+        {
+            NamespacedKey key = new NamespacedKey(this, "realrockets_biodieselreactor");
+            ShapedRecipe sr = new ShapedRecipe(key, RocketBlocks.getBiodieselReactor());
+            sr.shape("COC", "CLC");
+            sr.setIngredient('C', Material.COBBLESTONE);
+            sr.setIngredient('O', Material.COMPOSTER);
+            sr.setIngredient('L', Material.LAVA_BUCKET);
+            sr.setGroup("realrockets");
             Bukkit.addRecipe(sr);
         }
     }

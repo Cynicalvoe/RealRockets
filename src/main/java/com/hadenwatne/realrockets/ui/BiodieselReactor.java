@@ -11,17 +11,17 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
-public class OreRefinery implements IBlockUI {
+public class BiodieselReactor implements IBlockUI {
     private Inventory gui;
     private RealRockets plugin;
-    private boolean isRefining;
+    private boolean isReacting;
     private boolean active;
 
-    public OreRefinery(RealRockets p){
+    public BiodieselReactor(RealRockets p){
         plugin = p;
-        isRefining = false;
+        isReacting = false;
         active = true;
-        gui = Bukkit.createInventory(null, InventoryType.DISPENSER, ChatColor.translateAlternateColorCodes('&', "&7&lOre Refinery"));
+        gui = Bukkit.createInventory(null, InventoryType.DISPENSER, ChatColor.translateAlternateColorCodes('&', "&2&lBiodiesel Reactor"));
 
         gui.setItem(0, RocketBlocks.getUIBlock());
         gui.setItem(1, RocketBlocks.getUIBlock());
@@ -39,18 +39,18 @@ public class OreRefinery implements IBlockUI {
             if(e.getCurrentItem().isSimilar(RocketBlocks.getUIBlock()))
                 e.setCancelled(true);
 
-            if(!isRefining) {
-                isRefining = true;
+            if(!isReacting) {
+                isReacting = true;
 
-                if(gui.firstEmpty() > -1)
-                    new OreRefineryTask(this).runTaskTimer(plugin, 20, 20);
+//                if(gui.firstEmpty() > -1)
+//                    new OreRefineryTask(this).runTaskTimer(plugin, 20, 20);
             }
         }
     }
 
     @Override
     public String getType() {
-        return "OreRefinery";
+        return "BiodieselReactor";
     }
 
     @Override
@@ -59,8 +59,8 @@ public class OreRefinery implements IBlockUI {
         InventoryClickEvent.getHandlerList().unregister(this);
     }
 
-    public void setRefining(boolean r){
-        isRefining = r;
+    public void setReacting(boolean r){
+        isReacting = r;
     }
 
     public boolean isActive(){

@@ -24,6 +24,21 @@ public class RocketBlocks {
         return item;
     }
 
+    public static ItemStack getBiodieselReactor(){
+        ItemStack item = new ItemStack(Material.COMPOSTER);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &2&lBiodiesel Reactor &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Mix and ferment plants to"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7create Biodiesel"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
     public static ItemStack getEnrichedOre(){
         ItemStack item = new ItemStack(Material.CHARCOAL);
         List<String> lore = new ArrayList<>();
