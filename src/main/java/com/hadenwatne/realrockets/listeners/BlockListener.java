@@ -7,8 +7,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class BlockListener implements Listener {
@@ -21,6 +23,7 @@ public class BlockListener implements Listener {
     @EventHandler(priority = EventPriority.LOW)
     public void onBlockPlace(BlockPlaceEvent e){
         if(!e.isCancelled()) {
+            // TODO add other types
             if (e.getItemInHand().isSimilar(plugin.getBlocks().getOreRefinery())) {
                 IBlockUI b = new OreRefinery();
 
@@ -38,6 +41,17 @@ public class BlockListener implements Listener {
             if(b != null){
                 b.unregister();
                 plugin.getMapper().getBlockMap().remove(e.getBlock().getLocation());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onClickBlock(PlayerInteractEvent e){
+        if(e.getAction() == Action.RIGHT_CLICK_BLOCK){
+            IBlockUI b = plugin.getMapper().getBlockMap().get(e.getClickedBlock().getLocation());
+
+            if(b != null){
+                e.getPlayer().openInventory(b.getGUI());
             }
         }
     }
