@@ -4,7 +4,9 @@ import com.hadenwatne.realrockets.RealRockets;
 import com.hadenwatne.realrockets.ui.IBlockUI;
 import com.hadenwatne.realrockets.ui.OreRefinery;
 import com.hadenwatne.realrockets.ui.RocketBlocks;
+import com.hadenwatne.realrockets.utils.RandomUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -47,6 +49,12 @@ public class BlockListener implements Listener {
 
                 b.unregister();
                 plugin.getMapper().getBlockMap().remove(e.getBlock().getLocation());
+            }else{
+                if(e.getBlock().getType() == Material.STONE && e.isDropItems()){
+                    if(RandomUtil.getInt(50) == 0){
+                        e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), RocketBlocks.getEnrichedOre());
+                    }
+                }
             }
         }
     }
