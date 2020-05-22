@@ -95,6 +95,50 @@ public class RocketBlocks {
         return item;
     }
 
+    public static ItemStack getPurifiedWarhead(){
+        ItemStack item = new ItemStack(Material.CLAY_BALL);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &6&lPurified Warhead &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7This would make for a fine weapon"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7of mass destruction"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getImpureWarhead(){
+        ItemStack item = new ItemStack(Material.CLAY_BALL);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &7&lImpure Warhead &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7This &omight &7explode, if I"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7believe in myself"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getUnstableWarhead(){
+        ItemStack item = new ItemStack(Material.CLAY_BALL);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &c&lUnstable Warhead &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Bombs away!"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
     public static ItemStack getBiofuel(){
         ItemStack item = new ItemStack(Material.DRIED_KELP);
         ItemMeta itemMeta = item.getItemMeta();

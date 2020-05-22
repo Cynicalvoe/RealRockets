@@ -27,7 +27,8 @@ Use a Launch Station to prime the rocket. Can also disarm, self-destruct. Determ
 
 Timer before rocket lands. Can receive some operations during this time.
 
-
+Control eating the biofuel, falling with unstable stuff, etc.
+Support shift-clicking into the inventory
 
 Support environmental interactions. If rockets/fuel/chunks/etc are used in traditional ways (furnace, burned, etc.),
 blow things up.

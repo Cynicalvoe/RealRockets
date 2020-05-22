@@ -42,8 +42,8 @@ public class BiodieselReactor implements IBlockUI {
             if(!isReacting) {
                 isReacting = true;
 
-//                if(gui.firstEmpty() > -1)
-//                    new OreRefineryTask(this).runTaskTimer(plugin, 20, 20);
+                if(gui.firstEmpty() > -1)
+                    new BiodieselReactorTask(this).runTaskTimer(plugin, 20, 20);
             }
         }
     }

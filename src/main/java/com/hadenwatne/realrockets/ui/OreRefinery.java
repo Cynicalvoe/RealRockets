@@ -21,7 +21,7 @@ public class OreRefinery implements IBlockUI {
         plugin = p;
         isRefining = false;
         active = true;
-        gui = Bukkit.createInventory(null, InventoryType.DISPENSER, ChatColor.translateAlternateColorCodes('&', "&7&lOre Refinery"));
+        gui = Bukkit.createInventory(null, InventoryType.DISPENSER, ChatColor.translateAlternateColorCodes('&', "&8&lOre Refinery"));
 
         gui.setItem(0, RocketBlocks.getUIBlock());
         gui.setItem(1, RocketBlocks.getUIBlock());

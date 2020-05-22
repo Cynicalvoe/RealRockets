@@ -48,7 +48,7 @@ public class RealRockets extends JavaPlugin {
         {
             NamespacedKey key = new NamespacedKey(this, "realrockets_orerefinery");
             ShapedRecipe sr = new ShapedRecipe(key, RocketBlocks.getOreRefinery());
-            sr.shape("CCC", "CFC", "CLC");
+            sr.shape("CFC", "CLC");
             sr.setIngredient('C', Material.COBBLESTONE);
             sr.setIngredient('F', Material.FURNACE);
             sr.setIngredient('L', Material.LAVA_BUCKET);
