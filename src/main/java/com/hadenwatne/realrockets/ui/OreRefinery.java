@@ -31,4 +31,9 @@ public class OreRefinery implements IBlockUI {
     public String getType() {
         return "OreRefinery";
     }
+
+    @Override
+    public void unregister() {
+        InventoryClickEvent.getHandlerList().unregister(this);
+    }
 }

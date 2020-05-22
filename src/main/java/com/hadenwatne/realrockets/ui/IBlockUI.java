@@ -14,4 +14,5 @@ public interface IBlockUI extends Listener {
     public Inventory getGUI();
     public void onClickGUI(InventoryClickEvent e);
     public String getType();
+    public void unregister();
 }
