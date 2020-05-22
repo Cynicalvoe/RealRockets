@@ -91,12 +91,8 @@ public class ItemStackSerializer {
             for(String key : meta.keySet()){
                 Enchantment e = Enchantment.getByKey(NamespacedKey.minecraft(key));
 
-                if(e != null) {
+                if(e != null)
                     item.addUnsafeEnchantment(e, meta.getInt(key));
-                    System.out.println("Added enchantment: "+e.getName()+" "+meta.getInt(key));
-                }else{
-                    System.out.println("Could not add enchantment");
-                }
             }
         }
 

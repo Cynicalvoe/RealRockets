@@ -39,6 +39,11 @@ public class BlockListener implements Listener {
             IBlockUI b = plugin.getMapper().getBlockMap().get(e.getBlock().getLocation());
 
             if(b != null){
+                for(ItemStack i : b.getGUI().getContents()){
+                    if(i != null)
+                        e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), i);
+                }
+
                 b.unregister();
                 plugin.getMapper().getBlockMap().remove(e.getBlock().getLocation());
             }
