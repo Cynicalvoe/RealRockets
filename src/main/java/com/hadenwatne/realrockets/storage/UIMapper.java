@@ -4,6 +4,7 @@ import com.hadenwatne.realrockets.RealRockets;
 import com.hadenwatne.realrockets.storage.UIMapperData;
 import com.hadenwatne.realrockets.ui.IBlockUI;
 import com.hadenwatne.realrockets.ui.OreRefinery;
+import com.hadenwatne.realrockets.utils.ItemStackSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
@@ -38,7 +39,7 @@ public class UIMapper {
 
             if(b != null) {
                 for (int slot : bd.getInventoryData().keySet()) {
-                    ItemStack i = ItemStack.deserialize(bd.getInventoryData().get(slot));
+                    ItemStack i = ItemStackSerializer.deserialize(bd.getInventoryData().get(slot));
 
                     b.getGUI().setItem(slot, i);
                 }
@@ -77,7 +78,7 @@ public class UIMapper {
                 ItemStack item = b.getGUI().getItem(i);
 
                 if(item != null)
-                    bd.getInventoryData().put(i, item.serialize());
+                    bd.getInventoryData().put(i, ItemStackSerializer.serialize(item));
             }
 
             data.getBlockData().add(bd);

@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class UIBlockData {
     @Expose
-    private HashMap<Integer, Map<String, Object>> inventoryData;
+    private HashMap<Integer, String> inventoryData;
     @Expose
     private String type;
     @Expose
@@ -24,7 +24,7 @@ public class UIBlockData {
     private int z;
 
     public UIBlockData(String bt, String bw, int bx, int by, int bz){
-        inventoryData = new HashMap<Integer, Map<String, Object>>();
+        inventoryData = new HashMap<Integer, String>();
         type = bt;
         world = bw;
         x = bx;
@@ -32,7 +32,7 @@ public class UIBlockData {
         z = bz;
     }
 
-    public HashMap<Integer, Map<String, Object>> getInventoryData(){
+    public HashMap<Integer, String> getInventoryData(){
         return inventoryData;
     }
 

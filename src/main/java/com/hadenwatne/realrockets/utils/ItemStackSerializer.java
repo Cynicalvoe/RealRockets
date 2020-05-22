@@ -35,9 +35,7 @@ public class ItemStackSerializer {
                 meta.put("displayname", im.getDisplayName());
 
             if(im.hasLore()){
-                JSONArray lore = new JSONArray();
-                lore.put(im.getLore());
-                meta.put("lore", lore);
+                meta.put("lore", im.getLore());
             }
 
             json.put("meta", meta);
@@ -85,18 +83,22 @@ public class ItemStackSerializer {
             }
         }
 
+        item.setItemMeta(im);
+
         if(json.has("enchantments")){
             JSONObject meta = json.getJSONObject("enchantments");
 
             for(String key : meta.keySet()){
                 Enchantment e = Enchantment.getByKey(NamespacedKey.minecraft(key));
 
-                if(e != null)
+                if(e != null) {
                     item.addUnsafeEnchantment(e, meta.getInt(key));
+                    System.out.println("Added enchantment: "+e.getName()+" "+meta.getInt(key));
+                }else{
+                    System.out.println("Could not add enchantment");
+                }
             }
         }
-
-        item.setItemMeta(im);
 
         return item;
     }
