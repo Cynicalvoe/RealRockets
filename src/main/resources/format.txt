@@ -1,15 +1,15 @@
 Craftable things:
-- Ore Refinery
+- Ore Refinery (may need to be custom UI)
   + Slag
   + Purified Ore Chunk [best]
   + Impure Ore Chunk [can be refined]
   + Unstable Ore Chunk [can't be refined, may explode prematurely]
 
-- Biodiesel Reactor [water+plants+meat]
+- Biodiesel Reactor [water+plants+meat] (may need to be custom UI)
   + Waste Water
   + Biofuel
 
-- Warhead
+- Warhead (may need to have a crafting system with custom UI)
   + An amount of Ore Chunks
 
 - Targeting Computer
@@ -26,3 +26,24 @@ Fuel added determines how far it can fly from placement location
 Use a Launch Station to prime the rocket. Can also disarm, self-destruct. Determine/change target before launch.
 
 Timer before rocket lands. Can receive some operations during this time.
+
+
+
+Support environmental interactions. If rockets/fuel/chunks/etc are used in traditional ways (furnace, burned, etc.),
+blow things up.
+
+
+====
+Storage needs
+====
+
+Most data for the rocket will be kept in item lore/metadata.
+Settings file for misc. needs.
+Block UI mapper.
+
+
+ItemStack (Rocket):
+- Fuel amount
+- Connected Launch Station
+- If equipped with targeting computer (flag checked by Launch Station, launch sequence will determine target)
+- Warhead type
