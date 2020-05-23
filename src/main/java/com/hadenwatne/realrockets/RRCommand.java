@@ -33,6 +33,7 @@ public class RRCommand implements CommandExecutor {
             p.getInventory().addItem(RocketBlocks.getWarheadForge());
             p.getInventory().addItem(RocketBlocks.getRocketHull());
             p.getInventory().addItem(RocketBlocks.getRocketFoundry());
+            p.getInventory().addItem(RocketBlocks.getTargetingComputer());
         }
 
         return true;

@@ -69,6 +69,21 @@ public class RocketBlocks {
         return item;
     }
 
+    public static ItemStack getTargetingComputer(){
+        ItemStack item = new ItemStack(Material.DAYLIGHT_DETECTOR);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&8» &b&lTargeting Computer &8«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Steers the Rocket and adjusts course"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7towards a designated target"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
     public static ItemStack getEnrichedOre(){
         ItemStack item = new ItemStack(Material.CHARCOAL);
         List<String> lore = new ArrayList<>();
@@ -188,6 +203,16 @@ public class RocketBlocks {
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7a missile"));
 
         itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getRocketItem(){
+        ItemStack item = new ItemStack(Material.FIREWORK_ROCKET);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&8» &4&lRocket &8«"));
+        itemMeta.setLore(new ArrayList<String>());
         item.setItemMeta(itemMeta);
 
         return item;

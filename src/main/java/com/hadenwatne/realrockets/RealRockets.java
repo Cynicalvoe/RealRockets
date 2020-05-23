@@ -101,5 +101,18 @@ public class RealRockets extends JavaPlugin {
             sr.setGroup("realrockets");
             Bukkit.addRecipe(sr);
         }
+
+        //Targeting Computer
+        {
+            NamespacedKey key = new NamespacedKey(this, "realrockets_targetingcomputer");
+            ShapedRecipe sr = new ShapedRecipe(key, RocketBlocks.getTargetingComputer());
+            sr.shape("RRR", "TDT", "GGG");
+            sr.setIngredient('R', Material.REDSTONE);
+            sr.setIngredient('T', Material.REDSTONE_TORCH);
+            sr.setIngredient('D', Material.DAYLIGHT_DETECTOR);
+            sr.setIngredient('G', Material.GOLD_INGOT);
+            sr.setGroup("realrockets");
+            Bukkit.addRecipe(sr);
+        }
     }
 }
