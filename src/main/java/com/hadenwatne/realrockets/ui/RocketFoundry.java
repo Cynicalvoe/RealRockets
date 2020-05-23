@@ -13,6 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -123,7 +124,45 @@ public class RocketFoundry implements IBlockUI {
 
                 if(e.getCurrentItem().isSimilar(RocketBlocks.getUISetTarget())){
                     e.setCancelled(true);
-                    // TODO open another GUI or Book to collect coordinates
+
+                    List<ItemStack> center = getItemsInCenter();
+                    ItemStack r = RocketBlocks.getRocketItem();
+
+                    for(ItemStack c : center) {
+                        if (c != null) {
+                            if (c.getType() == r.getType() && c.getItemMeta().hasDisplayName() && c.getItemMeta().getDisplayName().equals(r.getItemMeta().getDisplayName())) {
+                                if(c.getItemMeta().hasLore()) {
+                                    ItemMeta im = c.getItemMeta();
+                                    List<String> lore = im.getLore();
+
+                                    if(lore.get(1).contains("Targeting")){
+                                        for(ItemStack cb : center) {
+                                            if (cb != null && (cb.getType()==Material.WRITABLE_BOOK || cb.getType()==Material.WRITTEN_BOOK)) {
+                                                BookMeta bm = (BookMeta)cb.getItemMeta();
+                                                String coords = getCoordsFromBook(bm.getPage(1));
+
+                                                if(coords != null){
+                                                    lore.set(1, ChatColor.translateAlternateColorCodes('&', "&7Targeting: &a"+coords));
+                                                    im.setLore(lore);
+                                                    c.setItemMeta(im);
+
+                                                    gui.remove(c);
+                                                    gui.remove(cb);
+                                                    gui.setItem(3, cb);
+                                                    gui.setItem(13, c);
+                                                }
+
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+
                     return;
                 }
 
@@ -232,6 +271,26 @@ public class RocketFoundry implements IBlockUI {
             return Integer.parseInt(m.group(1));
         }else{
             return 0;
+        }
+    }
+
+    private String getCoordsFromBook(String page){
+        StringBuilder sb = new StringBuilder();
+        Pattern p = Pattern.compile("((-?\\d+)(\\.\\d+)?,?\\s?)");
+        Matcher m = p.matcher(page);
+
+        while(m.find()){
+            if(sb.length() > 0)
+                sb.append(" ");
+
+            sb.append(m.group(2));
+        }
+
+        if(sb.length()>0){
+            String s = sb.toString();
+            return s.split(" ").length == 3 ? s : null;
+        }else{
+            return null;
         }
     }
 }

@@ -17,7 +17,7 @@ import java.util.Objects;
 A class that serializes and un-serializes ItemStack objects, preserving enchantments, lore, amounts, type, durability,
 etc.
 
-// TODO: doesn't work with potions yet
+// TODO: doesn't work with potions or books yet
  */
 public class ItemStackSerializer {
     public static String serialize(ItemStack item){
