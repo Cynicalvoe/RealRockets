@@ -47,7 +47,7 @@ public class RocketBlocks {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Combine Ore Chunks to craft"));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7a warhead"));
-        
+
         itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);
 
@@ -194,9 +194,69 @@ public class RocketBlocks {
     }
 
     public static ItemStack getUIBlock(){
-        ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+        ItemStack item = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&o?"));
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getUIBuildRocket(){
+        ItemStack item = new ItemStack(Material.LIME_STAINED_GLASS_PANE);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &a&lBuild Rocket &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Build a Rocket from the parts"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7in the center"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getUISetTarget(){
+        ItemStack item = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &6&lSet Target &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Set the Rocket's target, if equipped"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7with a Targeting Computer"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getUIAddFuel(){
+        ItemStack item = new ItemStack(Material.WHITE_STAINED_GLASS_PANE);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &lAdd Fuel &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Combine the Rocket with Biofuel"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7to increase flight time"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getUILaunch(){
+        ItemStack item = new ItemStack(Material.RED_STAINED_GLASS_PANE);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &4&lPrime for Launch &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Seal the chamber and ready the"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Rocket for launch"));
+
+        itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);
 
         return item;
