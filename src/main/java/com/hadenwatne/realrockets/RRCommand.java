@@ -31,6 +31,7 @@ public class RRCommand implements CommandExecutor {
             p.getInventory().addItem(RocketBlocks.getPurifiedWarhead());
             p.getInventory().addItem(RocketBlocks.getUnstableWarhead());
             p.getInventory().addItem(RocketBlocks.getWarheadForge());
+            p.getInventory().addItem(RocketBlocks.getRocketHull());
         }
 
         return true;

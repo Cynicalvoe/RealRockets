@@ -16,6 +16,15 @@ Craftable things:
 
 - Launch Station
 
+===
+Craft a Hull
+Warhead - Hull - Computer (optional) = Rocket
+- Can't place down until connected to station
+Launch GUI can sync, add fuel, and launch rocket when placed.
+
+Rocket Foundry to craft rockets
+
+
 Mix a custom amount of Biodiesel, a targeting computer, and one Warhead to create a Rocket (can be good, unstable, or faulty)
 Connect the rocket to a Launch Station to determine a target. If no computer is added, or if they are not connected, the rocket can go off on a random nearby target.
 

@@ -163,6 +163,21 @@ public class RocketBlocks {
         return item;
     }
 
+    public static ItemStack getRocketHull(){
+        ItemStack item = new ItemStack(Material.DIORITE_WALL);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &lRocket Hull &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7It's the perfect size for"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7a missile"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
     public static ItemStack getUIBlock(){
         ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta itemMeta = item.getItemMeta();

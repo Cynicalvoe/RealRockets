@@ -67,5 +67,28 @@ public class RealRockets extends JavaPlugin {
             sr.setGroup("realrockets");
             Bukkit.addRecipe(sr);
         }
+
+        //WarheadForge
+        {
+            NamespacedKey key = new NamespacedKey(this, "realrockets_warheadforge");
+            ShapedRecipe sr = new ShapedRecipe(key, RocketBlocks.getWarheadForge());
+            sr.shape("CAC", "CLC");
+            sr.setIngredient('C', Material.COBBLESTONE);
+            sr.setIngredient('A', Material.ANVIL);
+            sr.setIngredient('L', Material.LAVA_BUCKET);
+            sr.setGroup("realrockets");
+            Bukkit.addRecipe(sr);
+        }
+
+        //Rocket Hull
+        {
+            NamespacedKey key = new NamespacedKey(this, "realrockets_rockethull");
+            ShapedRecipe sr = new ShapedRecipe(key, RocketBlocks.getRocketHull());
+            sr.shape("IAI", "IAI", "IAI");
+            sr.setIngredient('I', Material.IRON_BLOCK);
+            sr.setIngredient('A', Material.AIR);
+            sr.setGroup("realrockets");
+            Bukkit.addRecipe(sr);
+        }
     }
 }
