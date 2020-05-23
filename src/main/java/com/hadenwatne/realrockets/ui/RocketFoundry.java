@@ -17,6 +17,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RocketFoundry implements IBlockUI {
     private Inventory gui;
@@ -127,8 +129,41 @@ public class RocketFoundry implements IBlockUI {
 
                 if(e.getCurrentItem().isSimilar(RocketBlocks.getUIAddFuel())){
                     e.setCancelled(true);
-                    // TODO combine Biofuel into the rocket, up to a certain amount, increasing how long it will stay
-                    // TODO in flight (in blocks).
+
+                    List<ItemStack> center = getItemsInCenter();
+                    ItemStack r = RocketBlocks.getRocketItem();
+                    ItemStack f = RocketBlocks.getBiofuel();
+
+                    for(ItemStack c : center) {
+                        if (c != null) {
+                            if(c.getType() == r.getType() && c.getItemMeta().hasDisplayName() && c.getItemMeta().getDisplayName().equals(r.getItemMeta().getDisplayName())){
+                                if(c.getItemMeta().hasLore()){
+                                    ItemMeta im = c.getItemMeta();
+                                    List<String> lore = im.getLore();
+                                    int startingFuel = extractNumberFromEnd(lore.get(im.getLore().size()-2));
+                                    int addingFuel = 0;
+
+                                    for(ItemStack cb : center) {
+                                        if (cb != null && cb.isSimilar(f)) {
+                                            addingFuel += cb.getAmount();
+                                            gui.remove(cb);
+                                        }
+                                    }
+
+                                    lore.set(im.getLore().size()-2, ChatColor.translateAlternateColorCodes('&', "&7Fuel: "+(startingFuel+addingFuel)));
+                                    im.setLore(lore);
+                                    c.setItemMeta(im);
+
+                                    gui.remove(c);
+                                    gui.setItem(13, c);
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+
+
                     return;
                 }
 
@@ -187,5 +222,16 @@ public class RocketFoundry implements IBlockUI {
         }
 
         return items;
+    }
+
+    private int extractNumberFromEnd(String s){
+        Pattern p = Pattern.compile("(\\d+)$");
+        Matcher m = p.matcher(s);
+
+        if(m.find()){
+            return Integer.parseInt(m.group(1));
+        }else{
+            return 0;
+        }
     }
 }
