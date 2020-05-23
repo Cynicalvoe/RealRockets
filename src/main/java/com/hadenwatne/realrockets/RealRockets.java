@@ -80,6 +80,17 @@ public class RealRockets extends JavaPlugin {
             Bukkit.addRecipe(sr);
         }
 
+        //RocketFoundry
+        {
+            NamespacedKey key = new NamespacedKey(this, "realrockets_rocketfoundry");
+            ShapedRecipe sr = new ShapedRecipe(key, RocketBlocks.getRocketFoundry());
+            sr.shape("III", "IDI", "III");
+            sr.setIngredient('I', Material.IRON_BLOCK);
+            sr.setIngredient('D', Material.DISPENSER);
+            sr.setGroup("realrockets");
+            Bukkit.addRecipe(sr);
+        }
+
         //Rocket Hull
         {
             NamespacedKey key = new NamespacedKey(this, "realrockets_rockethull");

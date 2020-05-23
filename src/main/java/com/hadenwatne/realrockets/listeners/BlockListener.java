@@ -24,7 +24,6 @@ public class BlockListener implements Listener {
     @EventHandler(priority = EventPriority.LOW)
     public void onBlockPlace(BlockPlaceEvent e){
         if(!e.isCancelled()) {
-            // TODO add other types
             if (e.getItemInHand().isSimilar(RocketBlocks.getOreRefinery())) {
                 IBlockUI b = new OreRefinery(plugin);
 
@@ -37,6 +36,11 @@ public class BlockListener implements Listener {
                 Bukkit.getPluginManager().registerEvents(b, plugin);
             } else if (e.getItemInHand().isSimilar(RocketBlocks.getWarheadForge())) {
                 IBlockUI b = new WarheadForge(plugin);
+
+                plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
+                Bukkit.getPluginManager().registerEvents(b, plugin);
+            } else if (e.getItemInHand().isSimilar(RocketBlocks.getRocketFoundry())) {
+                IBlockUI b = new RocketFoundry(plugin);
 
                 plugin.getMapper().getBlockMap().put(e.getBlock().getLocation(), b);
                 Bukkit.getPluginManager().registerEvents(b, plugin);

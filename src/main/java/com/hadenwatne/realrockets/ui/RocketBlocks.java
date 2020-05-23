@@ -47,6 +47,21 @@ public class RocketBlocks {
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Combine Ore Chunks to craft"));
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7a warhead"));
+        
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getRocketFoundry(){
+        ItemStack item = new ItemStack(Material.GRAY_GLAZED_TERRACOTTA);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f» &e&lRocket Foundry &f«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Construct rockets, add fuel,"));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7set targets, and launch"));
 
         itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);

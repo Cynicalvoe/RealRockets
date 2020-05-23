@@ -2,10 +2,7 @@ package com.hadenwatne.realrockets.storage;
 
 import com.hadenwatne.realrockets.RealRockets;
 import com.hadenwatne.realrockets.storage.UIMapperData;
-import com.hadenwatne.realrockets.ui.BiodieselReactor;
-import com.hadenwatne.realrockets.ui.IBlockUI;
-import com.hadenwatne.realrockets.ui.OreRefinery;
-import com.hadenwatne.realrockets.ui.WarheadForge;
+import com.hadenwatne.realrockets.ui.*;
 import com.hadenwatne.realrockets.utils.ItemStackSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,7 +29,6 @@ public class UIMapper {
         for(UIBlockData bd : data.getBlockData()) {
             IBlockUI b = null;
 
-            // TODO add each UI type here as needed.
             switch(bd.getType()){
                 case "OreRefinery":
                     b = new OreRefinery(plugin);
@@ -42,6 +38,9 @@ public class UIMapper {
                     break;
                 case "WarheadForge":
                     b = new WarheadForge(plugin);
+                    break;
+                case "RocketFoundry":
+                    b = new RocketFoundry(plugin);
                     break;
             }
 
