@@ -29,7 +29,7 @@ public class RocketFoundry implements IBlockUI {
         gui.setItem(10, RocketBlocks.getUIBlock());
         gui.setItem(11, RocketBlocks.getUIBlock());
         gui.setItem(15, RocketBlocks.getUIBlock());
-        gui.setItem(16, RocketBlocks.getUIBlock());
+        gui.setItem(16, RocketBlocks.getUILaunch());
         gui.setItem(17, RocketBlocks.getUIBlock());
         gui.setItem(18, RocketBlocks.getUIBlock());
         gui.setItem(19, RocketBlocks.getUIBlock());

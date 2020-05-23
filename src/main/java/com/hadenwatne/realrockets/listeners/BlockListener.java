@@ -55,8 +55,15 @@ public class BlockListener implements Listener {
 
             if(b != null){
                 for(ItemStack i : b.getGUI().getContents()){
-                    if(i != null && !i.isSimilar(RocketBlocks.getUIBlock()))
-                        e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), i);
+                    if(i != null) {
+                        if(!i.isSimilar(RocketBlocks.getUIBlock())
+                                && !i.isSimilar(RocketBlocks.getUILaunch())
+                                && !i.isSimilar(RocketBlocks.getUIAddFuel())
+                                && !i.isSimilar(RocketBlocks.getUISetTarget())
+                                && !i.isSimilar(RocketBlocks.getUIBuildRocket())) {
+                            e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), i);
+                        }
+                    }
                 }
 
                 b.unregister();
