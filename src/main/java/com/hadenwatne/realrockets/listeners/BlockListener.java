@@ -113,15 +113,20 @@ public class BlockListener implements Listener {
                     int type = Integer.parseInt(getEndNumbers(lore.get(0)));
                     String target = l.getBlockX()+" "+l.getBlockY()+" "+l.getBlockZ();
                     int fuel = 0;
+                    boolean primed = false;
 
                     if(lore.size() == 4){
                         target = getEndNumbers(lore.get(1));
                         fuel = Integer.parseInt(getEndNumbers(lore.get(2)));
+                        primed = lore.get(3).endsWith("YES");
                     }else{
                         fuel = Integer.parseInt(getEndNumbers(lore.get(1)));
+                        primed = lore.get(2).endsWith("YES");
                     }
 
-                    new RocketFlight(fuel, target, l, type);
+                    if(primed) {
+                        new RocketFlight(fuel, target, l, type, e.getPlayer()).runTaskTimer(plugin, 20, 20);
+                    }
                 }
             }
         }
