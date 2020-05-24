@@ -3,6 +3,7 @@ package com.hadenwatne.realrockets.listeners;
 import com.hadenwatne.realrockets.RealRockets;
 import com.hadenwatne.realrockets.ui.*;
 import com.hadenwatne.realrockets.utils.RandomUtil;
+import com.hadenwatne.realrockets.utils.RocketUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -86,6 +87,17 @@ public class BlockListener implements Listener {
             if(b != null){
                 e.setCancelled(true);
                 e.getPlayer().openInventory(b.getGUI());
+                return;
+            }
+
+            ItemStack br = RocketBlocks.getRocketItem();
+            ItemStack h = e.getItem();
+
+            if (h.getType() == br.getType() && h.getItemMeta().hasDisplayName() && h.getItemMeta().getDisplayName().equals(br.getItemMeta().getDisplayName())) {
+                // TODO do this instead RocketUtil.buildRocket(e.getClickedBlock().getLocation());
+                RocketUtil.explodeRocket(e.getClickedBlock().getLocation());
+                // TODO launch!
+                // TODO if the target is underground, strike the topmost block. Rockets can't phase through the ground!
             }
         }
     }
