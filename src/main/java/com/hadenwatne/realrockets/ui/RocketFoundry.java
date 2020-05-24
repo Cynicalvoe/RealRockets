@@ -58,6 +58,8 @@ public class RocketFoundry implements IBlockUI {
     public void onClickGUI(InventoryClickEvent e){
         if(e.getClickedInventory() != null && e.getClickedInventory().equals(gui)){
             if(e.getCurrentItem() != null) {
+                Player p = (Player)e.getWhoClicked();
+
                 if(e.getCurrentItem().isSimilar(RocketBlocks.getUIBlock())){
                     e.setCancelled(true);
                     return;
@@ -116,8 +118,13 @@ public class RocketFoundry implements IBlockUI {
                             rocket.setItemMeta(im);
 
                             gui.setItem(13, rocket);
+
+                            playGoodSound(p);
+                            return;
                         }
                     }
+
+                    playBadSound(p);
 
                     return;
                 }
@@ -134,8 +141,9 @@ public class RocketFoundry implements IBlockUI {
                                 if(c.getItemMeta().hasLore()) {
                                     ItemMeta im = c.getItemMeta();
                                     List<String> lore = im.getLore();
+                                    boolean primed = lore.get(lore.size()-1).endsWith("YES");
 
-                                    if(lore.get(1).contains("Targeting")){
+                                    if(lore.get(1).contains("Targeting") && !primed){
                                         for(ItemStack cb : center) {
                                             if (cb != null && (cb.getType()==Material.WRITABLE_BOOK || cb.getType()==Material.WRITTEN_BOOK)) {
                                                 BookMeta bm = (BookMeta)cb.getItemMeta();
@@ -150,11 +158,15 @@ public class RocketFoundry implements IBlockUI {
                                                     gui.remove(cb);
                                                     gui.setItem(3, cb);
                                                     gui.setItem(13, c);
+
+                                                    playGoodSound(p);
                                                 }
 
                                                 break;
                                             }
                                         }
+                                    }else{
+                                        playBadSound(p);
                                     }
                                 }
 
@@ -179,22 +191,30 @@ public class RocketFoundry implements IBlockUI {
                                 if(c.getItemMeta().hasLore()){
                                     ItemMeta im = c.getItemMeta();
                                     List<String> lore = im.getLore();
-                                    int startingFuel = extractNumberFromEnd(lore.get(im.getLore().size()-2));
-                                    int addingFuel = 0;
+                                    boolean primed = lore.get(lore.size()-1).endsWith("YES");
 
-                                    for(ItemStack cb : center) {
-                                        if (cb != null && cb.isSimilar(f)) {
-                                            addingFuel += cb.getAmount();
-                                            gui.remove(cb);
+                                    if(!primed) {
+                                        int startingFuel = extractNumberFromEnd(lore.get(im.getLore().size() - 2));
+                                        int addingFuel = 0;
+
+                                        for (ItemStack cb : center) {
+                                            if (cb != null && cb.isSimilar(f)) {
+                                                addingFuel += cb.getAmount();
+                                                gui.remove(cb);
+                                            }
                                         }
+
+                                        lore.set(im.getLore().size() - 2, ChatColor.translateAlternateColorCodes('&', "&7Fuel: " + (startingFuel + addingFuel)));
+                                        im.setLore(lore);
+                                        c.setItemMeta(im);
+
+                                        gui.remove(c);
+                                        gui.setItem(13, c);
+
+                                        playGoodSound(p);
+                                    }else{
+                                        playBadSound(p);
                                     }
-
-                                    lore.set(im.getLore().size()-2, ChatColor.translateAlternateColorCodes('&', "&7Fuel: "+(startingFuel+addingFuel)));
-                                    im.setLore(lore);
-                                    c.setItemMeta(im);
-
-                                    gui.remove(c);
-                                    gui.setItem(13, c);
                                 }
 
                                 break;
@@ -218,12 +238,20 @@ public class RocketFoundry implements IBlockUI {
                                 if(c.getItemMeta().hasLore()){
                                     ItemMeta im = c.getItemMeta();
                                     List<String> lore = im.getLore();
-                                    lore.set(im.getLore().size()-1, ChatColor.translateAlternateColorCodes('&', "&7Primed: &aYES"));
-                                    im.setLore(lore);
-                                    c.setItemMeta(im);
+                                    boolean primed = lore.get(lore.size()-1).endsWith("YES");
 
-                                    gui.remove(c);
-                                    gui.setItem(13, c);
+                                    if(!primed){
+                                        lore.set(im.getLore().size()-1, ChatColor.translateAlternateColorCodes('&', "&7Primed: &aYES"));
+                                        im.setLore(lore);
+                                        c.setItemMeta(im);
+
+                                        gui.remove(c);
+                                        gui.setItem(13, c);
+
+                                        playGoodSound(p);
+                                    }else{
+                                        playBadSound(p);
+                                    }
                                 }
 
                                 break;
@@ -292,5 +320,13 @@ public class RocketFoundry implements IBlockUI {
         }else{
             return null;
         }
+    }
+
+    private void playGoodSound(Player p){
+        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 5f, 5f);
+    }
+
+    private void playBadSound(Player p){
+        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 5f, 1f);
     }
 }

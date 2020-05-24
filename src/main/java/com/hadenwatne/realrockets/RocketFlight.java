@@ -56,26 +56,31 @@ public class RocketFlight extends BukkitRunnable {
         // If the distance is longer than fuel allows, pick the farthest block we can still reach.
         // TODO this algorithm sucks
         if(distance > totalDistance){
-            Vector startVector = start.toVector();
-            Vector midpoint = target.toVector().getMidpoint(startVector);
+            if(totalDistance > 0) {
+                Vector startVector = start.toVector();
+                Vector midpoint = target.toVector().getMidpoint(startVector);
 
-            if(startVector.distance(midpoint) > totalDistance){
-                Vector newMidpoint = startVector.getMidpoint(midpoint);
+                if (startVector.distance(midpoint) > totalDistance) {
+                    Vector newMidpoint = startVector.getMidpoint(midpoint);
 
-                while(startVector.distance(newMidpoint) > totalDistance){
-                    newMidpoint = newMidpoint.getMidpoint(startVector);
+                    while (startVector.distance(newMidpoint) > totalDistance) {
+                        newMidpoint = newMidpoint.getMidpoint(startVector);
+                    }
+
+                    target = newMidpoint.toLocation(target.getWorld());
+
+                } else {
+                    Vector newMidpoint = midpoint.getMidpoint(target.toVector());
+
+                    while (startVector.distance(newMidpoint) < totalDistance) {
+                        newMidpoint = newMidpoint.getMidpoint(target.toVector());
+                    }
+                    ;
+
+                    target = newMidpoint.toLocation(target.getWorld());
                 }
-
-                target = newMidpoint.toLocation(target.getWorld());
-
             }else{
-                Vector newMidpoint = midpoint.getMidpoint(target.toVector());
-
-                while(startVector.distance(newMidpoint) < totalDistance){
-                    newMidpoint = newMidpoint.getMidpoint(target.toVector());
-                };
-
-                target = newMidpoint.toLocation(target.getWorld());
+                target = start;
             }
         }
 
