@@ -8,6 +8,7 @@ import com.hadenwatne.realrockets.utils.RocketUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -126,6 +127,9 @@ public class BlockListener implements Listener {
 
                     if(primed) {
                         new RocketFlight(fuel, target, l, type, e.getPlayer()).runTaskTimer(plugin, 20, 20);
+                    }else{
+                        e.setCancelled(true);
+                        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 5f, 1f);
                     }
                 }
             }
