@@ -101,11 +101,6 @@ public class BlockListener implements Listener {
             ItemStack h = e.getItem();
 
             if (h.getType() == br.getType() && h.getItemMeta().hasDisplayName() && h.getItemMeta().getDisplayName().equals(br.getItemMeta().getDisplayName())) {
-                // TODO do this instead RocketUtil.buildRocket(e.getClickedBlock().getLocation());
-                //RocketUtil.explodeRocket(e.getClickedBlock().getLocation());
-                // TODO launch!
-                // TODO if the target is underground, strike the topmost block. Rockets can't phase through the ground!
-                // TODO must be primed in order to begin
                 Location l = e.getClickedBlock().getLocation();
 
                 if(h.getItemMeta().hasLore()){
