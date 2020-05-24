@@ -25,37 +25,30 @@ public class RocketFlight extends BukkitRunnable {
         double distance = target.distance(start);
 
         // If the distance is longer than fuel allows, pick the farthest block we can still reach.
+        // TODO this algorithm sucks
         if(distance > totalDistance){
-            System.out.println("Longer than allowed distance! "+distance+" (max. "+totalDistance+")");
             Vector startVector = start.toVector();
             Vector midpoint = target.toVector().getMidpoint(startVector);
 
-            System.out.println("Trying midpoint: "+startVector.distance(midpoint));
             if(startVector.distance(midpoint) > totalDistance){
-                System.out.println("Midpoint is still larger. Shrinking...");
+                Vector newMidpoint = startVector.getMidpoint(midpoint);
 
-                // TODO this doesn't work great
-                // get the midpoint of that (min: start, max:midpoint); repeat until we find a midpoint that's not farther, and use that one.
-                Vector newMidpoint;
-
-                do{
-                    newMidpoint = startVector.getMidpoint(midpoint);
-                }while(startVector.distance(newMidpoint) > totalDistance);
-
-                System.out.println("Settled on a point at distance "+startVector.distance(newMidpoint)+" ("+totalDistance+")");
+                while(startVector.distance(newMidpoint) > totalDistance){
+                    newMidpoint = newMidpoint.getMidpoint(startVector);
+                }
 
                 target = newMidpoint.toLocation(target.getWorld());
 
-
-                
             }else{
-                // get the midpoint of that (min: midpoint, max: target); repeat until we find a midpoint that's farther, then stop at the previous.
-                System.out.println("Pick a target farther away plz. "+startVector.distance(midpoint)+" (max. "+totalDistance+")");
-            }
-        }else{
-            System.out.println("Pick a target farther away plz. "+distance+" (max. "+totalDistance+")");
-        }
+                Vector newMidpoint = midpoint.getMidpoint(target.toVector());
 
+                while(startVector.distance(newMidpoint) < totalDistance){
+                    newMidpoint = newMidpoint.getMidpoint(target.toVector());
+                };
+
+                target = newMidpoint.toLocation(target.getWorld());
+            }
+        }
         // Fire at the target!
     }
 
