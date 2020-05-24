@@ -55,9 +55,6 @@ public class RocketUtil {
     }
 
     public static void explodeRocket(Location r){
-        //20x20x3 cube of explosions, every 2 blocks
-        //r.getWorld().createExplosion(r.clone().add(x, y, z), 4f);
-
         for(int y=-2; y<2; y++) {
             for(int x=-15; x<15; x++){
                 for(int z=-15; z<15; z++){
