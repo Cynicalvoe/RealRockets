@@ -53,6 +53,19 @@ public class RocketFlight extends BukkitRunnable {
             }
         }
 
+        // If the target is in the air, adjust aim to the topmost block.
+        if(target.getBlock().getType()==Material.AIR) {
+
+            for (int i = 0; i < target.getBlockY(); i++) {
+                Location targetRe = target.clone().subtract(0, i, 0);
+
+                if (targetRe.getBlock().getType() != Material.AIR) {
+                    target = targetRe;
+                    break;
+                }
+            }
+        }
+
         // If the distance is longer than fuel allows, pick the farthest block we can still reach.
         // TODO this algorithm sucks
         if(distance > totalDistance){
