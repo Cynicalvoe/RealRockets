@@ -24,11 +24,13 @@ public class RRCommand implements CommandExecutor {
                 p.getInventory().addItem(RocketBlocks.getImpureChunk());
                 p.getInventory().addItem(RocketBlocks.getUnstableChunk());
                 p.getInventory().addItem(RocketBlocks.getPurifiedChunk());
+                p.getInventory().addItem(RocketBlocks.getFleijaChunk());
                 p.getInventory().addItem(RocketBlocks.getOreRefinery());
                 p.getInventory().addItem(RocketBlocks.getBiodieselReactor());
                 p.getInventory().addItem(RocketBlocks.getImpureWarhead());
                 p.getInventory().addItem(RocketBlocks.getPurifiedWarhead());
                 p.getInventory().addItem(RocketBlocks.getUnstableWarhead());
+                p.getInventory().addItem(RocketBlocks.getFleijaWarhead());
                 p.getInventory().addItem(RocketBlocks.getWarheadForge());
                 p.getInventory().addItem(RocketBlocks.getRocketHull());
                 p.getInventory().addItem(RocketBlocks.getRocketFoundry());

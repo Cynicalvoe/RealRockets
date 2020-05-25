@@ -52,7 +52,9 @@ public class OreRefineryTask extends BukkitRunnable {
                     }
 
                     if (refinery.getGUI().firstEmpty() > -1) {
-                        switch (RandomUtil.getInt(6)) {
+                        int cap = refinery.getPlugin().getRocketMan().getEnableFleija() ? 7 : 6;
+
+                        switch (RandomUtil.getInt(cap)) {
                             case 0:
                             case 1:
                                 refinery.getGUI().addItem(RocketBlocks.getUnstableChunk());
@@ -64,6 +66,9 @@ public class OreRefineryTask extends BukkitRunnable {
                                 break;
                             case 5:
                                 refinery.getGUI().addItem(RocketBlocks.getPurifiedChunk());
+                                break;
+                            case 6:
+                                refinery.getGUI().addItem(RocketBlocks.getFleijaChunk());
                                 break;
                         }
 

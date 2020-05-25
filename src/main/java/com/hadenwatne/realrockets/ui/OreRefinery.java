@@ -82,4 +82,8 @@ public class OreRefinery implements IBlockUI {
             p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 3f, 1f);
         }
     }
+
+    public RealRockets getPlugin(){
+        return plugin;
+    }
 }

@@ -19,7 +19,8 @@ public class WarheadForgeTask extends BukkitRunnable {
     public void run() {
         if(forge.isActive()) {
             ItemStack item0 = forge.getGUI().getItem(0);
-            if (item0 != null && item0.getAmount() >= 9 && (item0.isSimilar(RocketBlocks.getUnstableChunk()) || item0.isSimilar(RocketBlocks.getImpureChunk()) || item0.isSimilar(RocketBlocks.getPurifiedChunk()))) {
+
+            if (item0 != null && item0.getAmount() >= 9 && (item0.isSimilar(RocketBlocks.getUnstableChunk()) || item0.isSimilar(RocketBlocks.getImpureChunk()) || item0.isSimilar(RocketBlocks.getPurifiedChunk()) || item0.isSimilar(RocketBlocks.getFleijaChunk()))) {
                 if (seconds < maxSeconds) {
                     seconds++;
                     forge.playTick();
@@ -31,21 +32,19 @@ public class WarheadForgeTask extends BukkitRunnable {
                         forge.getGUI().remove(item0);
                     }
 
-                    if (forge.getGUI().firstEmpty() > -1) {
-                        if(item0.isSimilar(RocketBlocks.getUnstableChunk()))
-                            forge.getGUI().setItem(8, RocketBlocks.getUnstableWarhead());
+                    if(item0.isSimilar(RocketBlocks.getUnstableChunk()))
+                        forge.getGUI().addItem( RocketBlocks.getUnstableWarhead());
 
-                        if(item0.isSimilar(RocketBlocks.getImpureChunk()))
-                            forge.getGUI().setItem(8, RocketBlocks.getImpureWarhead());
+                    if(item0.isSimilar(RocketBlocks.getImpureChunk()))
+                        forge.getGUI().addItem(RocketBlocks.getImpureWarhead());
 
-                        if(item0.isSimilar(RocketBlocks.getPurifiedChunk()))
-                            forge.getGUI().setItem(8, RocketBlocks.getPurifiedWarhead());
+                    if(item0.isSimilar(RocketBlocks.getPurifiedChunk()))
+                        forge.getGUI().addItem(RocketBlocks.getPurifiedWarhead());
 
-                        forge.playFinish();
-                    } else {
-                        forge.setBuilding(false);
-                        this.cancel();
-                    }
+                    if(item0.isSimilar(RocketBlocks.getFleijaChunk()))
+                        forge.getGUI().addItem(RocketBlocks.getFleijaWarhead());
+
+                    forge.playFinish();
 
                     seconds = 0;
                 }
@@ -55,6 +54,7 @@ public class WarheadForgeTask extends BukkitRunnable {
             }
         }else{
             // Likely removed.
+            forge.setBuilding(false);
             this.cancel();
         }
     }

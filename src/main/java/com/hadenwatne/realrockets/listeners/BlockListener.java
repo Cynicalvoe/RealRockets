@@ -123,6 +123,12 @@ public class BlockListener implements Listener {
                         }
 
                         if (primed) {
+                            if(type == 3 && !plugin.getRocketMan().getEnableFleija()){
+                                e.setCancelled(true);
+                                e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 5f, 1f);
+                                return;
+                            }
+
                             new RocketFlight(fuel, target, l, type, e.getPlayer()).runTaskTimer(plugin, 20, 20);
                         } else {
                             e.setCancelled(true);

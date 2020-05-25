@@ -86,6 +86,10 @@ public class RocketFoundry implements IBlockUI {
                                 warhead = c;
                                 warheadType = 2;
                                 break;
+                            } else if (c.isSimilar(RocketBlocks.getFleijaWarhead())) {
+                                warhead = c;
+                                warheadType = 3;
+                                break;
                             }
                         }
                     }

@@ -117,6 +117,29 @@ public class RocketUtil {
                 }
 
                 break;
+            case 3: // F.L.E.I.J.A.
+                for(int y=-5; y<5; y++) {
+                    for(int x=-25; x<25; x++){
+                        for(int z=-25; z<25; z++){
+                            if(x % 5 == 0 && z % 5 == 0){
+                                r.getWorld().createExplosion(r.clone().add(x, y, z), 6f);
+                            }
+                        }
+                    }
+
+                    // Explode a smaller layer at the bottom
+                    if(y == -5){
+                        for(int x=-10; x<10; x++){
+                            for(int z=-10; z<10; z++){
+                                if(x % 5 == 0 && z % 5 == 0){
+                                    r.getWorld().createExplosion(r.clone().add(x, y, z), 6f);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                break;
         }
 
     }

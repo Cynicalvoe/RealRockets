@@ -140,6 +140,20 @@ public class RocketBlocks {
         return item;
     }
 
+    public static ItemStack getFleijaChunk(){
+        ItemStack item = new ItemStack(Material.GRAY_DYE);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&8» &dF.L.E.I.J.A. Ore Chunk &8«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Refined through an Ore Refinery"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
     public static ItemStack getPurifiedWarhead(){
         ItemStack item = new ItemStack(Material.CLAY_BALL);
         List<String> lore = new ArrayList<>();
@@ -177,6 +191,21 @@ public class RocketBlocks {
         itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&8» &c&lUnstable Warhead &8«"));
 
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Bombs away!"));
+
+        itemMeta.setLore(lore);
+        item.setItemMeta(itemMeta);
+
+        return item;
+    }
+
+    public static ItemStack getFleijaWarhead(){
+        ItemStack item = new ItemStack(Material.CLAY_BALL);
+        List<String> lore = new ArrayList<>();
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&8» &d&lF.L.E.I.J.A Warhead &8«"));
+
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Science's greatest achievement."));
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7But at what cost?"));
 
         itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);
