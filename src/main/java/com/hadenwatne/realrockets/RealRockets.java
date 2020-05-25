@@ -3,6 +3,7 @@ package com.hadenwatne.realrockets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hadenwatne.realrockets.listeners.BlockListener;
+import com.hadenwatne.realrockets.storage.RocketMan;
 import com.hadenwatne.realrockets.storage.UIMapper;
 import com.hadenwatne.realrockets.ui.RocketBlocks;
 import com.hadenwatne.realrockets.utils.RandomUtil;
@@ -15,11 +16,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class RealRockets extends JavaPlugin {
     private Gson gson;
     private UIMapper mapper;
+    private RocketMan rocketMan;
 
     public void onEnable(){
         RandomUtil.init();
         GsonBuilder gb = new GsonBuilder();
         gson = gb.excludeFieldsWithoutExposeAnnotation().create();
+        rocketMan = new RocketMan(this);
         mapper = new UIMapper(this);
         RRCommand rrc = new RRCommand(this);
 
@@ -33,6 +36,10 @@ public class RealRockets extends JavaPlugin {
 
     public void onDisable(){
         mapper.serializeData();
+    }
+
+    public RocketMan getRocketMan(){
+        return rocketMan;
     }
 
     public UIMapper getMapper(){
