@@ -59,8 +59,7 @@ public class OreRefinery implements IBlockUI {
         if(!isRefining) {
             isRefining = true;
 
-            if(gui.firstEmpty() > -1)
-                new OreRefineryTask(this).runTaskTimer(plugin, 20, 20);
+            new OreRefineryTask(this).runTaskTimer(plugin, 20, 20);
         }
     }
 

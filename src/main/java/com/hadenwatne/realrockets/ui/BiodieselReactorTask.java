@@ -60,10 +60,9 @@ public class BiodieselReactorTask extends BukkitRunnable {
                         }
                     }
 
-                    if (reactor.getGUI().firstEmpty() > -1) {
-                        reactor.getGUI().addItem(RocketBlocks.getBiofuel());
+                    if(reactor.getGUI().addItem(RocketBlocks.getBiofuel()).size() == 0){
                         reactor.playFinish();
-                    } else {
+                    }else{
                         reactor.setReacting(false);
                         this.cancel();
                     }

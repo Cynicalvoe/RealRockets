@@ -52,26 +52,32 @@ public class OreRefineryTask extends BukkitRunnable {
                     }
 
                     int cap = refinery.getPlugin().getRocketMan().getEnableFleija() ? 7 : 6;
+                    ItemStack toAdd = null;
 
                     switch (RandomUtil.getInt(cap)) {
                         case 0:
                         case 1:
-                            refinery.getGUI().addItem(RocketBlocks.getUnstableChunk());
+                            toAdd = RocketBlocks.getUnstableChunk();
                             break;
                         case 2:
                         case 3:
                         case 4:
-                            refinery.getGUI().addItem(RocketBlocks.getImpureChunk());
+                            toAdd = RocketBlocks.getImpureChunk();
                             break;
                         case 5:
-                            refinery.getGUI().addItem(RocketBlocks.getPurifiedChunk());
+                            toAdd = RocketBlocks.getPurifiedChunk();
                             break;
                         case 6:
-                            refinery.getGUI().addItem(RocketBlocks.getFleijaChunk());
+                            toAdd = RocketBlocks.getFleijaChunk();
                             break;
                     }
 
-                    refinery.playFinish();
+                    if(refinery.getGUI().addItem(toAdd).size() == 0){
+                        refinery.playFinish();
+                    }else{
+                        refinery.setRefining(false);
+                        this.cancel();
+                    }
 
                     seconds = 0;
                 }

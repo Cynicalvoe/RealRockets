@@ -62,8 +62,7 @@ public class WarheadForge implements IBlockUI {
         if(!isBuilding) {
             isBuilding = true;
 
-            if(gui.firstEmpty() > -1)
-                new WarheadForgeTask(this).runTaskTimer(plugin, 20, 20);
+            new WarheadForgeTask(this).runTaskTimer(plugin, 20, 20);
         }
     }
 

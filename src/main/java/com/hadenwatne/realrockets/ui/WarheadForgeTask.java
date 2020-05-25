@@ -1,5 +1,6 @@
 package com.hadenwatne.realrockets.ui;
 
+import com.hadenwatne.realrockets.storage.RocketMan;
 import com.hadenwatne.realrockets.utils.RandomUtil;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -32,19 +33,26 @@ public class WarheadForgeTask extends BukkitRunnable {
                         forge.getGUI().remove(item0);
                     }
 
+                    ItemStack toAdd = null;
+
                     if(item0.isSimilar(RocketBlocks.getUnstableChunk()))
-                        forge.getGUI().addItem( RocketBlocks.getUnstableWarhead());
+                        toAdd = RocketBlocks.getUnstableWarhead();
 
                     if(item0.isSimilar(RocketBlocks.getImpureChunk()))
-                        forge.getGUI().addItem(RocketBlocks.getImpureWarhead());
+                        toAdd = RocketBlocks.getImpureWarhead();
 
                     if(item0.isSimilar(RocketBlocks.getPurifiedChunk()))
-                        forge.getGUI().addItem(RocketBlocks.getPurifiedWarhead());
+                        toAdd = RocketBlocks.getPurifiedWarhead();
 
                     if(item0.isSimilar(RocketBlocks.getFleijaChunk()))
-                        forge.getGUI().addItem(RocketBlocks.getFleijaWarhead());
+                        toAdd = RocketBlocks.getFleijaWarhead();
 
-                    forge.playFinish();
+                    if(forge.getGUI().addItem(toAdd).size() == 0){
+                        forge.playFinish();
+                    }else{
+                        forge.setBuilding(false);
+                        this.cancel();
+                    }
 
                     seconds = 0;
                 }
