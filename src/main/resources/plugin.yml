@@ -3,3 +3,9 @@ version: 1.0
 api-version: 1.13
 main: com.hadenwatne.realrockets.RealRockets
 author: Cynicalvoe
+commands:
+  rr:
+  realrockets:
+permissions:
+  realrockets.use:
+    default: op

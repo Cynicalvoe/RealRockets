@@ -15,25 +15,29 @@ public class RRCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        sender.sendMessage("Command under development");
+        if(sender.hasPermission("realrockets.use")) {
+            if (sender instanceof Player) {
+                Player p = (Player) sender;
 
-        if(sender instanceof Player){
-            Player p = (Player)sender;
-
-            p.getInventory().addItem(RocketBlocks.getBiofuel());
-            p.getInventory().addItem(RocketBlocks.getEnrichedOre());
-            p.getInventory().addItem(RocketBlocks.getImpureChunk());
-            p.getInventory().addItem(RocketBlocks.getUnstableChunk());
-            p.getInventory().addItem(RocketBlocks.getPurifiedChunk());
-            p.getInventory().addItem(RocketBlocks.getOreRefinery());
-            p.getInventory().addItem(RocketBlocks.getBiodieselReactor());
-            p.getInventory().addItem(RocketBlocks.getImpureWarhead());
-            p.getInventory().addItem(RocketBlocks.getPurifiedWarhead());
-            p.getInventory().addItem(RocketBlocks.getUnstableWarhead());
-            p.getInventory().addItem(RocketBlocks.getWarheadForge());
-            p.getInventory().addItem(RocketBlocks.getRocketHull());
-            p.getInventory().addItem(RocketBlocks.getRocketFoundry());
-            p.getInventory().addItem(RocketBlocks.getTargetingComputer());
+                p.getInventory().addItem(RocketBlocks.getBiofuel());
+                p.getInventory().addItem(RocketBlocks.getEnrichedOre());
+                p.getInventory().addItem(RocketBlocks.getImpureChunk());
+                p.getInventory().addItem(RocketBlocks.getUnstableChunk());
+                p.getInventory().addItem(RocketBlocks.getPurifiedChunk());
+                p.getInventory().addItem(RocketBlocks.getOreRefinery());
+                p.getInventory().addItem(RocketBlocks.getBiodieselReactor());
+                p.getInventory().addItem(RocketBlocks.getImpureWarhead());
+                p.getInventory().addItem(RocketBlocks.getPurifiedWarhead());
+                p.getInventory().addItem(RocketBlocks.getUnstableWarhead());
+                p.getInventory().addItem(RocketBlocks.getWarheadForge());
+                p.getInventory().addItem(RocketBlocks.getRocketHull());
+                p.getInventory().addItem(RocketBlocks.getRocketFoundry());
+                p.getInventory().addItem(RocketBlocks.getTargetingComputer());
+            }else{
+                sender.sendMessage("You must be a player to use this command!");
+            }
+        }else{
+            sender.sendMessage("You don't have permission to use that command.");
         }
 
         return true;

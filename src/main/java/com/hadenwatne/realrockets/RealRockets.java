@@ -21,10 +21,10 @@ public class RealRockets extends JavaPlugin {
         GsonBuilder gb = new GsonBuilder();
         gson = gb.excludeFieldsWithoutExposeAnnotation().create();
         mapper = new UIMapper(this);
-//        RRCommand rrc = new RRCommand(this);
-//
-//        this.getCommand("rr").setExecutor(rrc);
-//        this.getCommand("realrockets").setExecutor(rrc);
+        RRCommand rrc = new RRCommand(this);
+
+        this.getCommand("rr").setExecutor(rrc);
+        this.getCommand("realrockets").setExecutor(rrc);
 
         Bukkit.getPluginManager().registerEvents(new BlockListener(this), this);
 

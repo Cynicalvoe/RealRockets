@@ -69,7 +69,7 @@ public class RocketUtil {
     public static void explodeRocket(Location r, int type){
         switch(type){
             case 0: // Impure
-                for(int y=-1; y<1; y++) {
+                for(int y=-2; y<2; y++) {
                     for(int x=-5; x<5; x++){
                         for(int z=-5; z<5; z++){
                             if(x % 4 == 0 && z % 4 == 0){
@@ -95,11 +95,22 @@ public class RocketUtil {
 
                 break;
             case 2: // Purified
-                for(int y=-2; y<2; y++) {
+                for(int y=-3; y<3; y++) {
                     for(int x=-15; x<15; x++){
                         for(int z=-15; z<15; z++){
-                            if(x % 3 == 0 && z % 3 == 0){
+                            if(x % 4 == 0 && z % 4 == 0){
                                 r.getWorld().createExplosion(r.clone().add(x, y, z), 5f);
+                            }
+                        }
+                    }
+
+                    // Explode a smaller layer at the bottom
+                    if(y == -3){
+                        for(int x=-8; x<8; x++){
+                            for(int z=-8; z<8; z++){
+                                if(x % 4 == 0 && z % 4 == 0){
+                                    r.getWorld().createExplosion(r.clone().add(x, y, z), 5f);
+                                }
                             }
                         }
                     }

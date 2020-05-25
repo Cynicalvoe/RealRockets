@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -96,35 +97,37 @@ public class BlockListener implements Listener {
                 e.getPlayer().openInventory(b.getGUI());
                 return;
             }
-
-            ItemStack br = RocketBlocks.getRocketItem();
             ItemStack h = e.getItem();
 
-            if (h.getType() == br.getType() && h.getItemMeta().hasDisplayName() && h.getItemMeta().getDisplayName().equals(br.getItemMeta().getDisplayName())) {
-                Location l = e.getClickedBlock().getLocation();
+            if(h != null) {
+                ItemStack br = RocketBlocks.getRocketItem();
 
-                if(h.getItemMeta().hasLore()){
-                    List<String> lore = h.getItemMeta().getLore();
+                if (h.getType() == br.getType() && h.getItemMeta().hasDisplayName() && h.getItemMeta().getDisplayName().equals(br.getItemMeta().getDisplayName())) {
+                    Location l = e.getClickedBlock().getLocation();
 
-                    int type = Integer.parseInt(getEndNumbers(lore.get(0)));
-                    String target = l.getBlockX()+" "+l.getBlockY()+" "+l.getBlockZ();
-                    int fuel = 0;
-                    boolean primed = false;
+                    if (h.getItemMeta().hasLore()) {
+                        List<String> lore = h.getItemMeta().getLore();
 
-                    if(lore.size() == 4){
-                        target = getEndNumbers(lore.get(1));
-                        fuel = Integer.parseInt(getEndNumbers(lore.get(2)));
-                        primed = lore.get(3).endsWith("YES");
-                    }else{
-                        fuel = Integer.parseInt(getEndNumbers(lore.get(1)));
-                        primed = lore.get(2).endsWith("YES");
-                    }
+                        int type = Integer.parseInt(getEndNumbers(lore.get(0)));
+                        String target = l.getBlockX() + " " + l.getBlockY() + " " + l.getBlockZ();
+                        int fuel = 0;
+                        boolean primed = false;
 
-                    if(primed) {
-                        new RocketFlight(fuel, target, l, type, e.getPlayer()).runTaskTimer(plugin, 20, 20);
-                    }else{
-                        e.setCancelled(true);
-                        e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 5f, 1f);
+                        if (lore.size() == 4) {
+                            target = getEndNumbers(lore.get(1));
+                            fuel = Integer.parseInt(getEndNumbers(lore.get(2)));
+                            primed = lore.get(3).endsWith("YES");
+                        } else {
+                            fuel = Integer.parseInt(getEndNumbers(lore.get(1)));
+                            primed = lore.get(2).endsWith("YES");
+                        }
+
+                        if (primed) {
+                            new RocketFlight(fuel, target, l, type, e.getPlayer()).runTaskTimer(plugin, 20, 20);
+                        } else {
+                            e.setCancelled(true);
+                            e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 5f, 1f);
+                        }
                     }
                 }
             }
