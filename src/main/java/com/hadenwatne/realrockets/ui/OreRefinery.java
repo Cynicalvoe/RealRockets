@@ -39,12 +39,7 @@ public class OreRefinery implements IBlockUI {
             if(e.getCurrentItem().isSimilar(RocketBlocks.getUIBlock()))
                 e.setCancelled(true);
 
-            if(!isRefining) {
-                isRefining = true;
-
-                if(gui.firstEmpty() > -1)
-                    new OreRefineryTask(this).runTaskTimer(plugin, 20, 20);
-            }
+            startTask();
         }
     }
 
@@ -57,6 +52,16 @@ public class OreRefinery implements IBlockUI {
     public void unregister() {
         active = false;
         InventoryClickEvent.getHandlerList().unregister(this);
+    }
+
+    @Override
+    public void startTask() {
+        if(!isRefining) {
+            isRefining = true;
+
+            if(gui.firstEmpty() > -1)
+                new OreRefineryTask(this).runTaskTimer(plugin, 20, 20);
+        }
     }
 
     public void setRefining(boolean r){

@@ -17,9 +17,9 @@ public class RocketMan {
         loadFromFile();
     }
 
-    public boolean getEnableFleija(){
+    public boolean getEnableFleija() {
         try {
-            return Boolean.getBoolean(configValues.get("enableFleija"));
+            return Boolean.parseBoolean(configValues.get("enableFleija"));
         }catch (Exception e){
             configValues.put("enableFleija", "true");
             return true;

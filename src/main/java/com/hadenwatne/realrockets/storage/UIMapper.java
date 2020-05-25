@@ -53,6 +53,9 @@ public class UIMapper {
 
                 blockMap.put(bd.getLocation(), b);
                 Bukkit.getPluginManager().registerEvents(b, plugin);
+
+                // Attempt to restart any tasks this block was completing.
+                b.startTask();
             }
         }
 

@@ -277,6 +277,11 @@ public class RocketFoundry implements IBlockUI {
         InventoryClickEvent.getHandlerList().unregister(this);
     }
 
+    @Override
+    public void startTask() {
+        // Do nothing
+    }
+
     private List<ItemStack> getItemsInCenter(){
         List<ItemStack> items = new ArrayList<>();
 

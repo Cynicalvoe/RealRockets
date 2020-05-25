@@ -51,32 +51,27 @@ public class OreRefineryTask extends BukkitRunnable {
                         }
                     }
 
-                    if (refinery.getGUI().firstEmpty() > -1) {
-                        int cap = refinery.getPlugin().getRocketMan().getEnableFleija() ? 7 : 6;
+                    int cap = refinery.getPlugin().getRocketMan().getEnableFleija() ? 7 : 6;
 
-                        switch (RandomUtil.getInt(cap)) {
-                            case 0:
-                            case 1:
-                                refinery.getGUI().addItem(RocketBlocks.getUnstableChunk());
-                                break;
-                            case 2:
-                            case 3:
-                            case 4:
-                                refinery.getGUI().addItem(RocketBlocks.getImpureChunk());
-                                break;
-                            case 5:
-                                refinery.getGUI().addItem(RocketBlocks.getPurifiedChunk());
-                                break;
-                            case 6:
-                                refinery.getGUI().addItem(RocketBlocks.getFleijaChunk());
-                                break;
-                        }
-
-                        refinery.playFinish();
-                    } else {
-                        refinery.setRefining(false);
-                        this.cancel();
+                    switch (RandomUtil.getInt(cap)) {
+                        case 0:
+                        case 1:
+                            refinery.getGUI().addItem(RocketBlocks.getUnstableChunk());
+                            break;
+                        case 2:
+                        case 3:
+                        case 4:
+                            refinery.getGUI().addItem(RocketBlocks.getImpureChunk());
+                            break;
+                        case 5:
+                            refinery.getGUI().addItem(RocketBlocks.getPurifiedChunk());
+                            break;
+                        case 6:
+                            refinery.getGUI().addItem(RocketBlocks.getFleijaChunk());
+                            break;
                     }
+
+                    refinery.playFinish();
 
                     seconds = 0;
                 }

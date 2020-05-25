@@ -42,12 +42,7 @@ public class WarheadForge implements IBlockUI {
             if(e.getCurrentItem() != null && e.getCurrentItem().isSimilar(RocketBlocks.getUIBlock()))
                 e.setCancelled(true);
 
-            if(!isBuilding) {
-                isBuilding = true;
-
-                if(gui.firstEmpty() > -1)
-                    new WarheadForgeTask(this).runTaskTimer(plugin, 20, 20);
-            }
+            startTask();
         }
     }
 
@@ -60,6 +55,16 @@ public class WarheadForge implements IBlockUI {
     public void unregister() {
         active = false;
         InventoryClickEvent.getHandlerList().unregister(this);
+    }
+
+    @Override
+    public void startTask() {
+        if(!isBuilding) {
+            isBuilding = true;
+
+            if(gui.firstEmpty() > -1)
+                new WarheadForgeTask(this).runTaskTimer(plugin, 20, 20);
+        }
     }
 
     public void setBuilding(boolean r){
