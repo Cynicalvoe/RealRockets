@@ -36,6 +36,8 @@ public class RealRockets extends JavaPlugin {
 
     public void onDisable(){
         mapper.serializeData();
+
+        this.saveConfig();
     }
 
     public RocketMan getRocketMan(){

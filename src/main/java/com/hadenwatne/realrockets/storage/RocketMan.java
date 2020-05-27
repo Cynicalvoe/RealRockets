@@ -22,7 +22,19 @@ public class RocketMan {
             return Boolean.parseBoolean(configValues.get("enableFleija"));
         }catch (Exception e){
             configValues.put("enableFleija", "true");
+            plugin.getConfig().set("enableFleija", true);
             return true;
+        }
+    }
+
+    public int getOreDropChance() {
+        try {
+            int c = Integer.parseInt(configValues.get("oreDropChance"));
+            return c > 0 ? c : 45;
+        }catch (Exception e){
+            configValues.put("oreDropChance", "45");
+            plugin.getConfig().set("oreDropChance", 45);
+            return 45;
         }
     }
 
