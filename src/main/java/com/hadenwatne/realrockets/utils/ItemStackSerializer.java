@@ -1,9 +1,11 @@
 package com.hadenwatne.realrockets.utils;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.json.JSONArray;
@@ -17,9 +19,12 @@ import java.util.Objects;
 A class that serializes and un-serializes ItemStack objects, preserving enchantments, lore, amounts, type, durability,
 etc.
 
-// TODO: doesn't work with potions or books yet
+// TODO: doesn't work with potions yet
  */
 public class ItemStackSerializer {
+    public static final String cc = Character.toString(ChatColor.COLOR_CHAR);
+    public static final String ccr = "#CC";
+    
     public static String serialize(ItemStack item){
         JSONObject json = new JSONObject();
 
@@ -34,10 +39,37 @@ public class ItemStackSerializer {
             meta.put("damage", dim.getDamage());
 
             if(im.hasDisplayName())
-                meta.put("displayname", im.getDisplayName());
+                meta.put("displayname", im.getDisplayName().replaceAll(cc, ccr));
 
             if(im.hasLore()){
-                meta.put("lore", im.getLore());
+                List<String> oldLore = im.getLore();
+                List<String> newLore = new ArrayList<>();
+
+                for(String s : oldLore) {
+                    newLore.add(s.replaceAll(cc, ccr));
+                }
+
+                meta.put("lore", newLore);
+            }
+
+            if(item.getType() == Material.WRITABLE_BOOK || item.getType()== Material.WRITTEN_BOOK){
+                BookMeta bm = (BookMeta)im;
+                JSONObject bookData = new JSONObject();
+                List<String> oldPages = bm.getPages();
+                List<String> newPages = new ArrayList<>();
+
+                if(bm.hasTitle())
+                    bookData.put("title", bm.getTitle().replaceAll(cc, ccr));
+
+                if(bm.hasAuthor())
+                    bookData.put("author", bm.getAuthor().replaceAll(cc, ccr));
+
+                for(String s : oldPages) {
+                    newPages.add(s.replaceAll(cc, ccr));
+                }
+
+                bookData.put("pages", newPages);
+                meta.put("bookData", bookData);
             }
 
             json.put("meta", meta);
@@ -71,17 +103,37 @@ public class ItemStackSerializer {
                 dim.setDamage(meta.getInt("damage"));
 
             if (meta.has("displayname"))
-                im.setDisplayName(meta.getString("displayname"));
+                im.setDisplayName(meta.getString("displayname").replaceAll(ccr, cc));
 
             if (meta.has("lore")) {
                 JSONArray lore = meta.getJSONArray("lore");
                 List<String> newlore = new ArrayList<>();
 
                 for (int i = 0; i < lore.length(); i++) {
-                    newlore.add(lore.getString(i));
+                    newlore.add(lore.getString(i).replaceAll(ccr, cc));
                 }
 
                 im.setLore(newlore);
+            }
+
+            if(meta.has("bookData")){
+                JSONObject bookData = meta.getJSONObject("bookData");
+                BookMeta bm = (BookMeta)im;
+
+                if(bookData.has("title"))
+                    bm.setTitle(bookData.getString("title"));
+
+                if(bookData.has("author"))
+                    bm.setAuthor(bookData.getString("author"));
+
+                JSONArray pages = bookData.getJSONArray("pages");
+                List<String> newPages = new ArrayList<>();
+
+                for (int i = 0; i < pages.length(); i++) {
+                    newPages.add(pages.getString(i).replaceAll(ccr, cc));
+                }
+
+                bm.setPages(newPages);
             }
         }
 
