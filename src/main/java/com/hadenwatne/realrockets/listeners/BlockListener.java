@@ -79,8 +79,10 @@ public class BlockListener implements Listener {
                 plugin.getMapper().getBlockMap().remove(e.getBlock().getLocation());
             }else{
                 if(e.getBlock().getType() == Material.STONE && e.isDropItems()){
-                    if(RandomUtil.getInt(plugin.getRocketMan().getOreDropChance()) == 0){
-                        e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), RocketBlocks.getEnrichedOre());
+                    if(e.getPlayer().hasPermission("realrockets.dropore")) {
+                        if (RandomUtil.getInt(plugin.getRocketMan().getOreDropChance()) == 0) {
+                            e.getBlock().getWorld().dropItem(e.getBlock().getLocation(), RocketBlocks.getEnrichedOre());
+                        }
                     }
                 }
             }
