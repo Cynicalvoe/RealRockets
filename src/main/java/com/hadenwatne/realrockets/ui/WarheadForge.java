@@ -38,7 +38,7 @@ public class WarheadForge implements IBlockUI {
 
     @EventHandler
     public void onClickGUI(InventoryClickEvent e){
-        if(e.getClickedInventory() != null && e.getClickedInventory().equals(gui)){
+        if(e.getClickedInventory() != null && e.getWhoClicked().getOpenInventory().getTopInventory().equals(gui)){
             if(e.getCurrentItem() != null && e.getCurrentItem().isSimilar(RocketBlocks.getUIBlock()))
                 e.setCancelled(true);
 

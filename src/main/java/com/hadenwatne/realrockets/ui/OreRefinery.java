@@ -35,7 +35,7 @@ public class OreRefinery implements IBlockUI {
 
     @EventHandler
     public void onClickGUI(InventoryClickEvent e){
-        if(e.getClickedInventory() != null && e.getClickedInventory().equals(gui)){
+        if(e.getClickedInventory() != null && e.getWhoClicked().getOpenInventory().getTopInventory().equals(gui)){
             if(e.getCurrentItem().isSimilar(RocketBlocks.getUIBlock()))
                 e.setCancelled(true);
 

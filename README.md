@@ -1,8 +1,22 @@
 ## Overview
-A Minecraft plugin that adds nuclear missiles to your Spigot server.
-
-## Usage
+A Minecraft plugin that adds nuclear missiles to your Spigot server.  
 RealRockets adds a collection of new mechanics to Minecraft. After collecting enough **Enriched Ore**, you can refine it into **Ore Chunks**, which can be crafted into deadly missile warheads. **Enriched Ore** is dropped when mining common stone blocks in the Overworld.
+
+## How to Use
+1. Collect up a good amount of **Enriched Ore**
+2. Build an **Ore Refinery** and a **Biodiesel Reactor**
+3. Use the **Biodiesel Reactor** to create **Biofuel**. To do this, you'll need to combine **Potatoes, Bone Meal, and Sugar Cane**
+4. Place the **Biofuel** and **Enriched Ore** into the **Ore Refinery** to create **chunks**
+5. You'll need **9 similar chunks** in order to create a **Warhead**. You can do this by crafting a **Warhead Forge**
+6. A rocket without a **Targeting Computer** can't navigate, so be sure to craft one of these, too.
+7. Craft a **Rocket Hull** to put all the items in
+8. Inside a **Rocket Foundry**, combine your **Rocket Hull**, **Warhead**, and **Targeting Computer** and build the rocket
+9. Write down your target coordinates in a Book & Quill. Then, place both the rocket and the book inside the foundry, and **Set Target**
+10. A rocket needs fuel, so be sure to add some **Biofuel** for the trip. **1 Biofuel** flies about **50 blocks**
+11. When your rocket is ready to launch, prime it in the foundry
+12. From a safe location, place the rocket on the ground. It will launch, fly to the destination, and detonate. Congrats!
+
+![](media/tutorial.gif)
 
 ### Key Ingredients
 **Biofuel**  
@@ -19,56 +33,22 @@ Missiles are made in the **Rocket Foundry**. You need a **Warhead**, a **Rocket 
 
 ### Crafting Recipes
 **Ore Refinery**  
-C = Cobblestone  
-F = Furnace  
-L = Lava Bucket  
-C|F|C
----|---|---
-C|L|C
- | | 
+![](media/ss_ore_refinery.png)
 
 **Biodiesel Reactor**  
-C = Cobblestone  
-O = Composter  
-L = Lava Bucket  
-C|O|C
----|---|---
-C|L|C
- | | 
+![](media/ss_biodiesel_reactor.png)
 
 **Warhead Forge**  
-C = Cobblestone  
-A = Anvil  
-L = Lava Bucket  
-C|A|C
----|---|---
-C|L|C
- | | 
+![](media/ss_warhead_forge.png)
 
 **Rocket Foundry**  
-I = Iron Block  
-D = Dispenser  
-I|I|I
----|---|---
-I|D|I
-I|I|I
+![](media/ss_rocket_foundry.png)
 
 **Rocket Hull**  
-I = Iron Block  
-I|I|I
----|---|---
-I||I
-I|I|I
+![](media/ss_rocket_hull.png)
 
 **Targeting Computer**  
-R = Redstone Dust  
-T = Redstone Torch  
-D = Daylight Detector  
-G = Gold Ingot  
-R|R|R
----|---|---
-T|D|T
-G|G|G
+![](media/ss_targeting_computer.png)
 
 ### Commands
 /rr  

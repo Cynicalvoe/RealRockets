@@ -10,4 +10,4 @@ permissions:
   realrockets.use:
     default: op
   realrockets.dropore:
-    default: true
+    default: op
